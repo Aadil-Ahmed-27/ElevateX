@@ -23,11 +23,11 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="create"
+        name="forum"
         options={{
-          title: "Create",
+          title: "Community",
           tabBarIcon: ({ color, size }) => (
-            <Feather name="plus-square" size={size} color={color} />
+            <Feather name="aperture" size={size} color={color} />
           ),
         }}
       />

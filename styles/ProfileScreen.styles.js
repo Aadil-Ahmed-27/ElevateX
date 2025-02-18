@@ -24,7 +24,13 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f8f8f8', 
     justifyContent: 'center', 
     alignItems: 'center', 
-    marginRight: 16 
+    marginRight: 16,
+    overflow: 'hidden'
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 40
   },
   profileImagePlaceholder: { 
     width: 80, 
@@ -41,27 +47,31 @@ export const styles = StyleSheet.create({
     color: '#000',
     marginBottom: 4
   },
-  headline: { 
+  about: { 
     fontSize: 14,
     color: '#666',
-    marginTop: 2
-  },
-  connections: { 
-    fontSize: 14,
-    color: '#666',
-    marginTop: 2
+    marginTop: 2,
+    lineHeight: 20
   },
   statsContainer: { 
     flexDirection: 'row', 
-    justifyContent: 'space-between', 
+    justifyContent: 'space-around', 
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0'
   },
-  statsText: { 
-    color: '#666', 
+  statItem: {
+    alignItems: 'center'
+  },
+  statNumber: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000'
+  },
+  statLabel: {
     fontSize: 14,
-    fontWeight: '500'
+    color: '#666',
+    marginTop: 4
   },
   buttonsContainer: { 
     flexDirection: 'row', 
@@ -104,14 +114,20 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500'
   },
+  activeTabText: {
+    color: '#000',
+    fontWeight: 'bold'
+  },
   tabContent: { 
     padding: 16,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    flex: 1
   },
   placeholderText: { 
     color: '#666',
     textAlign: 'center',
-    fontSize: 14
+    fontSize: 14,
+    padding: 20
   },
   modalItem: { 
     color: '#000',
@@ -119,5 +135,19 @@ export const styles = StyleSheet.create({
     padding: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0'
+  },
+  contentContainer: {
+    flexGrow: 1
+  },
+  listEmptyComponent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20
+  },
+  emptyText: {
+    color: '#666',
+    fontSize: 14,
+    textAlign: 'center'
   }
 });

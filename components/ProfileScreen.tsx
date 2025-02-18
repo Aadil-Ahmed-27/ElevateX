@@ -1,59 +1,107 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, Alert, FlatList, Share } from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView, FlatList, Image } from 'react-native';
 import { styles } from '../styles/ProfileScreen.styles';
-import { useNavigation } from '@react-navigation/native';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
+
+interface ProfileData {
+  name: string;
+  about: string;
+  profileImage: string | null;
+}
+
 
 const ProfileScreen = () => {
-  const navigation = useNavigation();
-  const [name, setName] = useState('ElevateX');
-  const [headline, setHeadline] = useState('Aspiring Software Developer | CIT 27 CSE-AIML | Full Stack Developer | Machine Learning | 400+ Leetcode Problems | Second Year at Chennai Institute Of Technology');
-  const [posts, setPosts] = useState(0);
-  const [followers, setFollowers] = useState(0);
-  const [following, setFollowing] = useState(0);
-  const [activeTab, setActiveTab] = useState('posts');
+  // Initialize states with proper types
+  const [name, setName] = useState<string>('Adithya S');
+  const [about, setAbout] = useState<string>('Aspiring Software Developer | Full Stack Developer | Machine Learning');
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [posts, setPosts] = useState<number>(0);
+  const [followers, setFollowers] = useState<number>(0);
+  const [following, setFollowing] = useState<number>(0);
+  const [activeTab, setActiveTab] = useState<'posts' | 'saved' | 'startups'>('posts');
 
-  const startups = ['Startup Profile 1', 'Startup Profile 2', 'Startup Profile 3'];
+  // Get updated profile data from route params when returning from edit screen
+  const params = useLocalSearchParams();
+  React.useEffect(() => {
+    if (params.updatedName && typeof params.updatedName === 'string') {
+      setName(params.updatedName);
+    }
+    if (params.updatedAbout && typeof params.updatedAbout === 'string') {
+      setAbout(params.updatedAbout);
+    }
+    if (params.updatedImage && typeof params.updatedImage === 'string') {
+      setProfileImage(params.updatedImage);
+    }
+  }, [params]);
 
-  const handleRegisterStartup = () => {
-    router.push('/register-startup');
+  const handleEditProfile = () => {
+    router.push({
+      pathname: '/edit-profile',
+      params: {
+        currentName: name,
+        currentAbout: about,
+        currentImage: profileImage
+      }
+    });
   };
 
   const renderHeader = () => (
     <>
       <View style={styles.profileHeader}> 
         <View style={styles.profileImageContainer}>
-          <View style={styles.profileImagePlaceholder} />
+          {profileImage ? (
+            <Image 
+              source={{ uri: profileImage }} 
+              style={styles.profileImage}
+            />
+          ) : (
+            <View style={styles.profileImagePlaceholder} />
+          )}
         </View>
         <View style={styles.profileInfoContainer}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.headline}>{headline}</Text>
+          <Text style={styles.about}>{about}</Text>
         </View>
       </View>
 
       <View style={styles.statsContainer}>
-        <Text style={styles.statsText}>{posts} posts</Text>
-        <Text style={styles.statsText}>{followers} followers</Text>
-        <Text style={styles.statsText}>{following} following</Text>
+        <View style={styles.statItem}>
+          <Text style={styles.statNumber}>{posts}</Text>
+          <Text style={styles.statLabel}>Posts</Text>
+        </View>
+        <View style={styles.statItem}>
+          <Text style={styles.statNumber}>{followers}</Text>
+          <Text style={styles.statLabel}>Followers</Text>
+        </View>
+        <View style={styles.statItem}>
+          <Text style={styles.statNumber}>{following}</Text>
+          <Text style={styles.statLabel}>Following</Text>
+        </View>
       </View>
 
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('editprofile')}>
+        <TouchableOpacity style={styles.button} onPress={handleEditProfile}>
           <Text style={styles.buttonText}>Edit Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleRegisterStartup}>
-          <Text style={styles.buttonText}>Register Startup</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.tabContainer}>
-        <TouchableOpacity onPress={() => setActiveTab('posts')} style={[styles.tabButton, activeTab === 'posts' && styles.activeTab]}>
+        <TouchableOpacity 
+          onPress={() => setActiveTab('posts')} 
+          style={[styles.tabButton, activeTab === 'posts' && styles.activeTab]}
+        >
           <Text style={styles.tabText}>Posts</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setActiveTab('saved')} style={[styles.tabButton, activeTab === 'saved' && styles.activeTab]}>
+        <TouchableOpacity 
+          onPress={() => setActiveTab('saved')} 
+          style={[styles.tabButton, activeTab === 'saved' && styles.activeTab]}
+        >
           <Text style={styles.tabText}>Saved Posts</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setActiveTab('startups')} style={[styles.tabButton, activeTab === 'startups' && styles.activeTab]}>
+        <TouchableOpacity 
+          onPress={() => setActiveTab('startups')} 
+          style={[styles.tabButton, activeTab === 'startups' && styles.activeTab]}
+        >
           <Text style={styles.tabText}>Startups</Text>
         </TouchableOpacity>
       </View>
