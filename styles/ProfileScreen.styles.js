@@ -149,5 +149,10 @@ export const styles = StyleSheet.create({
     color: '#666',
     fontSize: 14,
     textAlign: 'center'
-  }
+  },
+  createButton: {
+    position: "absolute",
+    bottom: 30,
+    right: 30,
+  },
 });

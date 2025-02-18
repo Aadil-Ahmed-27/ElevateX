@@ -1,4 +1,3 @@
-// components/FeedScreen.tsx
 import React from 'react';
 import { 
   View, 
@@ -10,6 +9,7 @@ import {
   SafeAreaView 
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import styles from '../styles/FeedScreen.styles';
 
 const Post = ({ post }) => (
@@ -51,16 +51,49 @@ const Post = ({ post }) => (
         <Text style={styles.actionText}>Comment</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.actionButton}>
-        <Feather name="share-2" size={24} color="#666" />
-        <Text style={styles.actionText}>Share</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.actionButton}>
         <Feather name="send" size={24} color="#666" />
         <Text style={styles.actionText}>Send</Text>
       </TouchableOpacity>
     </View>
   </View>
 );
+
+const Header = () => {
+  const router = useRouter();
+
+  return (
+    <View style={styles.header}>
+      <Image 
+        source={require('../assets/images/logo.jpg')}
+        style={styles.logoImage}
+        resizeMode="contain"
+      />
+      <TouchableOpacity 
+        style={styles.notificationButton}
+        onPress={() => router.push('/profile')}
+      >
+        <View style= {
+          {width: 40, 
+          height: 40, 
+          borderRadius: 40, 
+          backgroundColor: '#f8f8f8', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          marginRight: 16,
+          overflow: 'hidden'
+          }
+        }>
+          <Image 
+            source={require('../assets/images/profilepic.jpg')}
+            style = {{width: '100%',
+              height: '100%',
+              borderRadius: 40}}  
+          />
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const FeedScreen = () => {
   const posts = [
@@ -96,7 +129,7 @@ const FeedScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-
+      <Header />
       <ScrollView>
         {posts.map(post => (
           <Post key={post.id} post={post} />

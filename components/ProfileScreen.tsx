@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, FlatList, Image } from 'react-native';
 import { styles } from '../styles/ProfileScreen.styles';
 import { router, useLocalSearchParams } from 'expo-router';
+import { Ionicons } from "@expo/vector-icons";
 
 interface ProfileData {
   name: string;
   about: string;
   profileImage: string | null;
 }
-
 
 const ProfileScreen = () => {
   // Initialize states with proper types
@@ -18,7 +18,7 @@ const ProfileScreen = () => {
   const [posts, setPosts] = useState<number>(0);
   const [followers, setFollowers] = useState<number>(0);
   const [following, setFollowing] = useState<number>(0);
-  const [activeTab, setActiveTab] = useState<'posts' | 'saved' | 'startups'>('posts');
+  const [activeTab, setActiveTab] = useState<'posts' |'startups'>('posts');
 
   // Get updated profile data from route params when returning from edit screen
   const params = useLocalSearchParams();
@@ -45,6 +45,11 @@ const ProfileScreen = () => {
     });
   };
 
+  const handleRegisterStartup = () => {
+    router.push('/register-startup');
+  };
+
+
   const renderHeader = () => (
     <>
       <View style={styles.profileHeader}> 
@@ -55,7 +60,10 @@ const ProfileScreen = () => {
               style={styles.profileImage}
             />
           ) : (
-            <View style={styles.profileImagePlaceholder} />
+            <Image 
+              source={require('../assets/images/profilepic.jpg')} 
+              style={styles.profileImage}
+            />
           )}
         </View>
         <View style={styles.profileInfoContainer}>
@@ -64,24 +72,13 @@ const ProfileScreen = () => {
         </View>
       </View>
 
-      <View style={styles.statsContainer}>
-        <View style={styles.statItem}>
-          <Text style={styles.statNumber}>{posts}</Text>
-          <Text style={styles.statLabel}>Posts</Text>
-        </View>
-        <View style={styles.statItem}>
-          <Text style={styles.statNumber}>{followers}</Text>
-          <Text style={styles.statLabel}>Followers</Text>
-        </View>
-        <View style={styles.statItem}>
-          <Text style={styles.statNumber}>{following}</Text>
-          <Text style={styles.statLabel}>Following</Text>
-        </View>
-      </View>
-
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.button} onPress={handleEditProfile}>
           <Text style={styles.buttonText}>Edit Profile</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={handleRegisterStartup}>
+          <Text style={styles.buttonText}>Register Startup</Text>
         </TouchableOpacity>
       </View>
 
@@ -92,12 +89,7 @@ const ProfileScreen = () => {
         >
           <Text style={styles.tabText}>Posts</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
-          onPress={() => setActiveTab('saved')} 
-          style={[styles.tabButton, activeTab === 'saved' && styles.activeTab]}
-        >
-          <Text style={styles.tabText}>Saved Posts</Text>
-        </TouchableOpacity>
+
         <TouchableOpacity 
           onPress={() => setActiveTab('startups')} 
           style={[styles.tabButton, activeTab === 'startups' && styles.activeTab]}
@@ -112,12 +104,10 @@ const ProfileScreen = () => {
     switch (activeTab) {
       case 'posts':
         return <Text style={styles.placeholderText}>User's posts will appear here.</Text>;
-      case 'saved':
-        return <Text style={styles.placeholderText}>User's saved posts will appear here.</Text>;
       case 'startups':
         return (
           <FlatList
-            data={startups}
+            data= {['Startup 1', 'Startup 2', 'Startup 3']}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => <Text style={styles.modalItem}>{item}</Text>}
             ListHeaderComponent={renderHeader}
@@ -144,6 +134,13 @@ const ProfileScreen = () => {
           }
         />
       )}
+      {/* Floating button to create a new post */}
+      <TouchableOpacity
+        style={styles.createButton}
+        onPress={() => router.push("/create")}
+      >
+        <Ionicons name="add-circle" size={48} color="#0077b5" />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

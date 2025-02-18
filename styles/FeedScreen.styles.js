@@ -1,4 +1,3 @@
-// FeedScreen.styles.js
 import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -7,11 +6,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
-    paddingTop: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 16,
+    paddingVertical: 12,
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
+  },
+  logoImage: {
+    width: 120,
+    height: 30,
+  },
+  notificationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  notificationButton: {
+    padding: 8,
   },
   statusInfo: {
     flexDirection: 'row',

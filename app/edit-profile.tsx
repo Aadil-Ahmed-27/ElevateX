@@ -37,7 +37,7 @@ const EditProfileScreen = () => {
   
     const handleSave = () => {
       router.push({
-        pathname: '/(tabs)/profile',
+        pathname: '/profile',
         params: {
           updatedName: newName,
           updatedAbout: newAbout,
