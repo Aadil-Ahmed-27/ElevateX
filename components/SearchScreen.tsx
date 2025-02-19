@@ -24,14 +24,14 @@ const persons: SearchResult[] = [
   {
     id: 1,
     type: "person",
-    name: "Rohan",
+    name: "John Doe",
     avatar: "https://randomuser.me/api/portraits/men/1.jpg",
     position: "Student",
   },
   {
     id: 2,
     type: "person",
-    name: "Williams",
+    name: "Jane Smith",
     avatar: "https://randomuser.me/api/portraits/women/2.jpg",
     position: "Investor",
   },
@@ -48,14 +48,14 @@ const startups: SearchResult[] = [
   {
     id: 1,
     type: "startup",
-    name: "TechNova",
+    name: "Malcom Company",
     avatar: "https://www.facebook.com/TechNovaDPM/?locale=et_EE",
     tagline: "Innovating the Future",
   },
   {
     id: 2,
     type: "startup",
-    name: "GreenStart",
+    name: "Cybersec Solutions",
     avatar: "https://via.placeholder.com/80x80.png?text=GreenStart",
     tagline: "Sustainable Solutions",
   },

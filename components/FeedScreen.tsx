@@ -108,7 +108,7 @@ const FeedScreen = () => {
     },
     {
       id: 2,
-      userName: "Rohan",
+      userName: "John Doe",
       userTitle: "Senior Software Engineer | Tech Lead",
       userAvatar: "https://randomuser.me/api/portraits/men/1.jpg",
       image: require('../assets/images/post1.png'),
@@ -117,7 +117,7 @@ const FeedScreen = () => {
     },
     {
       id: 3,
-      userName: "Williams",
+      userName: "Jane Smith",
       userTitle: "Product Manager | Innovation Lead",
       userAvatar: "https://randomuser.me/api/portraits/women/2.jpg",
       image: require('../assets/images/post2.png'),

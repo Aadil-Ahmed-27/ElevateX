@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   Platform,
-  ScrollView,
 } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -38,7 +37,6 @@ const samplePosts: ForumPost[] = [
     userAvatar: "https://randomuser.me/api/portraits/women/44.jpg",
     tags: ["cybersecurity", "cloud"],
   },
-  // ... (other posts if needed)
 ];
 
 const sampleComments: Comment[] = [
@@ -65,7 +63,7 @@ const sampleComments: Comment[] = [
 export default function ForumDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  // Find the post by id (for the prototype, we use samplePosts)
+
   const post = samplePosts.find((p) => p.id.toString() === id);
 
   if (!post) {
@@ -75,6 +73,27 @@ export default function ForumDetailScreen() {
       </View>
     );
   }
+
+  const renderHeader = () => (
+    <View style={styles.postContainer}>
+      <View style={styles.postHeader}>
+        <Image source={{ uri: post.userAvatar }} style={styles.avatar} />
+        <View style={styles.postHeaderInfo}>
+          <Text style={styles.postUsername}>{post.username}</Text>
+          <Text style={styles.postTitle}>{post.title}</Text>
+        </View>
+      </View>
+      <Text style={styles.postContent}>{post.content}</Text>
+      <View style={styles.tagContainer}>
+        {post.tags.map((tag) => (
+          <View key={tag} style={styles.postTag}>
+            <Text style={styles.tagText}>#{tag}</Text>
+          </View>
+        ))}
+      </View>
+      <Text style={styles.commentsTitle}>Comments</Text>
+    </View>
+  );
 
   const renderComment = ({ item }: { item: Comment }) => (
     <View style={styles.commentContainer}>
@@ -87,7 +106,7 @@ export default function ForumDetailScreen() {
   );
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity
@@ -99,32 +118,15 @@ export default function ForumDetailScreen() {
         <Text style={styles.headerTitle}>Post Details</Text>
       </View>
 
-      <View style={styles.postContainer}>
-        <View style={styles.postHeader}>
-          <Image source={{ uri: post.userAvatar }} style={styles.avatar} />
-          <View style={styles.postHeaderInfo}>
-            <Text style={styles.postUsername}>{post.username}</Text>
-            <Text style={styles.postTitle}>{post.title}</Text>
-          </View>
-        </View>
-        <Text style={styles.postContent}>{post.content}</Text>
-        <View style={styles.tagContainer}>
-          {post.tags.map((tag) => (
-            <View key={tag} style={styles.postTag}>
-              <Text style={styles.tagText}>#{tag}</Text>
-            </View>
-          ))}
-        </View>
-      </View>
-
-      <Text style={styles.commentsTitle}>Comments</Text>
+      {/* FlatList for entire screen */}
       <FlatList
         data={sampleComments}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderComment}
+        ListHeaderComponent={renderHeader} // Post details as header
         contentContainerStyle={styles.commentsList}
       />
-    </ScrollView>
+    </View>
   );
 }
 
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
   postContainer: {
     backgroundColor: "#fff",
     padding: 16,
-    margin: 16,
+    marginBottom: 8,
     borderRadius: 8,
     shadowColor: "#000",
     shadowOpacity: 0.05,
@@ -210,11 +212,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: "#212529",
-    marginHorizontal: 16,
     marginTop: 16,
   },
   commentsList: {
-    padding: 16,
+    paddingBottom: 16,
   },
   commentContainer: {
     flexDirection: "row",

@@ -1,17 +1,25 @@
 import { StyleSheet, Platform } from "react-native";
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f7f8fa",
-    paddingTop: Platform.OS === "ios" ? 40 : 16,
+    paddingTop: Platform.OS === "ios" ? 44 : 16,
+  },
+  scrollContent: {
+    paddingBottom: 16,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#fff",
     paddingHorizontal: 16,
     paddingVertical: 12,
-    backgroundColor: "#fff",
     borderBottomWidth: 1,
     borderBottomColor: "#e6e6e6",
   },
@@ -23,82 +31,209 @@ export const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#212529",
   },
-  profileContainer: {
+  coverContainer: {
+    width: "100%",
+    height: 200,
+    backgroundColor: "#e9ecef",
+  },
+  coverPhoto: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+  },
+  companyInfoCard: {
+    paddingHorizontal: 16,
+    marginTop: -40,
     alignItems: "center",
-    padding: 20,
+    marginBottom: 16,
   },
-  logo: {
-    width: 100,
-    height: 100,
-    borderRadius: 12,
-    marginBottom: 12,
+  companyLogo: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#fff",
+    marginBottom: 8,
   },
-  name: {
+  companyName: {
     fontSize: 24,
     fontWeight: "700",
     color: "#212529",
+    textAlign: "center",
   },
-  tagline: {
+  companyTagline: {
     fontSize: 16,
     color: "#6c757d",
+    textAlign: "center",
     marginVertical: 4,
   },
-  description: {
+  infoLine: {
     fontSize: 14,
     color: "#495057",
     textAlign: "center",
-    marginTop: 12,
-    lineHeight: 20,
+    marginBottom: 12,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#212529",
-    marginTop: 16,
-  },
-  analytics: {
+  actionButtons: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center", // Center text horizontally
-    backgroundColor: "skyblue",
-    borderRadius: 10,
-    paddingVertical: 8, // Add padding for better appearance
-    paddingHorizontal: 16, // Ensure text is centered within
-    width: "auto", // Adjust width based on content
-    hight: "auto",
+    marginBottom: 16,
   },
-  sectionTitle1: {
-    fontSize: 18,
+  actionButton: {
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    marginHorizontal: 4,
+  },
+  messageButton: {
+    backgroundColor: "#17a2b8",
+  },
+  messageButtonText: {
+    fontSize: 14,
     fontWeight: "600",
-    color: "#212529",
+    color: "#fff",
   },
-
-  detailText: {
-    fontSize: 16,
+  analyticsButton: {
+    backgroundColor: "#0077b5",
+  },
+  actionButtonText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#fff",
+  },
+  tabBar: {
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderBottomColor: "#e6e6e6",
+    marginTop: 8,
+  },
+  tabItem: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+  },
+  tabItemActive: {
+    borderBottomWidth: 3,
+    borderBottomColor: "#0077b5",
+  },
+  tabItemText: {
+    fontSize: 14,
+    color: "#495057",
+    fontWeight: "600",
+  },
+  tabItemTextActive: {
+    color: "#0077b5",
+  },
+  tabContent: {
+    padding: 16,
+  },
+  placeholderContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: 100,
+  },
+  placeholderText: {
     color: "#6c757d",
-    marginVertical: 4,
+    fontStyle: "italic",
   },
+  // Posts styles
   postsList: {
     marginTop: 8,
-    width: "100%",
   },
   postContainer: {
     backgroundColor: "#fff",
-    padding: 12,
     borderRadius: 8,
-    marginVertical: 4,
+    padding: 12,
+    marginBottom: 12,
     shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 1 },
+    shadowRadius: 4,
+    elevation: 1,
+  },
+  postHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  postLogo: {
+    width: 40,
+    height: 40,
+    borderRadius: 8,
+    marginRight: 8,
+  },
+  postCompanyName: {
+    fontWeight: "600",
+    fontSize: 14,
+    color: "#212529",
+  },
+  postDate: {
+    fontSize: 12,
+    color: "#adb5bd",
   },
   postText: {
     fontSize: 14,
     color: "#212529",
+    lineHeight: 20,
+    marginBottom: 8,
   },
-  centered: {
-    flex: 1,
-    justifyContent: "center",
+  postImage: {
+    width: "100%",
+    height: 200,
+    borderRadius: 6,
+    marginBottom: 8,
+    backgroundColor: "#dee2e6",
+  },
+  engagementRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
   },
+  engagementText: {
+    fontSize: 12,
+    color: "#6c757d",
+  },
+  engagementIcons: {
+    flexDirection: "row",
+  },
+  iconButton: {
+    marginLeft: 16,
+  },
+  // AI Assistant (floating button)
+  aiAssistantContainer: {
+    position: "absolute",
+    bottom: 20,
+    left: 20,
+    zIndex: 10,
+  },
+  aiAssistantButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#0077b5",
+    padding: 12,
+    borderRadius: 30,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  aiAssistantText: {
+    color: "#fff",
+    fontWeight: "600",
+    marginLeft: 8,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    marginTop: 16,
+    marginBottom: 8,
+    color: "#212529",
+    width: "100%",
+  },
+  detailText: {
+    fontSize: 14,
+    color: "#495057",
+    marginBottom: 12,
+    lineHeight: 20,
+  },
 });
+
+export default styles;

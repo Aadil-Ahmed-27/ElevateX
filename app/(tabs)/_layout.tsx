@@ -25,7 +25,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="forum"
         options={{
-          title: "Community",
+          title: "Discussions",
           tabBarIcon: ({ color, size }) => (
             <Feather name="aperture" size={size} color={color} />
           ),
@@ -34,7 +34,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="notifications"
         options={{
-          title: "Notifications",
+          title: "Updates",
           tabBarIcon: ({ color, size }) => (
             <Feather name="bell" size={size} color={color} />
           ),
