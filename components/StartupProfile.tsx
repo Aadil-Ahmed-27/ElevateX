@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "../styles/StartupProfile.styles";
+import {useRouter} from "expo-router";
 
 const ProfileScreen = ({ startup }) => {
   const [activeTab, setActiveTab] = useState<"Posts" | "Jobs" | "People" | "About">("Posts");
+  const router = useRouter();
 
   if (!startup) {
     return (
@@ -61,6 +63,14 @@ const ProfileScreen = ({ startup }) => {
               <Text style={styles.companyTagline}>{startup.tagline}</Text>
             </View>
 
+            <View style={{flex : 1, justifyContent: "center", alignItems: "center" , padding: 10, flexDirection: "row"}}>
+              <TouchableOpacity onPress={ () => router.push(`/(analytics)/analysis`)} style={{marginRight: 10}}>
+                <Text>Analytics</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={ () => router.push(`/AI_asst`)}>
+                <Text>AI Assistant</Text>
+              </TouchableOpacity>
+            </View>
             <View style={styles.tabBar}>
               {["Posts", "Jobs", "People", "About"].map((tab) => (
                 <TouchableOpacity
