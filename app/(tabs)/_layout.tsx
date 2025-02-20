@@ -5,7 +5,7 @@ export default function TabsLayout() {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
-        name="index"
+        name="feed"
         options={{
           title: "Home",
           tabBarIcon: ({ color, size }) => (
@@ -32,7 +32,7 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="notifications"
+        name="campaign"
         options={{
           title: "Updates",
           tabBarIcon: ({ color, size }) => (
@@ -49,7 +49,6 @@ export default function TabsLayout() {
           ),
         }}
       />
-      
     </Tabs>
   );
 }
