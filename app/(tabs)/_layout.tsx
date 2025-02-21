@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+import { Tabs } from "expo-router"; 
 import { Feather } from '@expo/vector-icons';
 
 export default function TabsLayout() {
@@ -32,11 +32,11 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="campaign"
+        name="Campaign"
         options={{
-          title: "Updates",
+          title: "Campaigns",
           tabBarIcon: ({ color, size }) => (
-            <Feather name="bell" size={size} color={color} />
+            <Feather name="target" size={size} color={color} />
           ),
         }}
       />

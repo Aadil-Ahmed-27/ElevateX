@@ -13,7 +13,7 @@ const AIAssistant = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const scrollViewRef = useRef<ScrollView>(null);
-    const API_URL = "http://192.168.252.139:8000";
+    const API_URL = "http://192.168.252.133:8000";
   
     useEffect(() => {
       fetchMessages();

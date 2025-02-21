@@ -1,3 +1,4 @@
+// File: app/_layout.tsx
 import React, { useEffect, useState } from 'react';
 import { Stack } from "expo-router";
 import { router } from 'expo-router';
@@ -9,10 +10,7 @@ export default function RootLayout() {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        // Wait for a moment to simulate loading screen
         await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Check for token in AsyncStorage
         const token = await AsyncStorage.getItem('userToken');
         
         if (token) {
@@ -38,6 +36,11 @@ export default function RootLayout() {
       <Stack.Screen name="register" options={{ headerShown: false }} />
       <Stack.Screen name="usersetup" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="profile" options={{ headerShown: false }} />
+      <Stack.Screen name="edit-profile" options={{ headerShown: false }} />
+      <Stack.Screen name="register-startup" options={{ headerShown: false }} />
+      <Stack.Screen name="create" options={{ headerShown: false }} />
+      <Stack.Screen name="AI_asst" options={{ headerShown: false }} />
     </Stack>
   );
 }

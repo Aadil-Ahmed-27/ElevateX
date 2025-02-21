@@ -19,14 +19,14 @@ const ProfileScreen = ({ startup }) => {
   const renderPost = ({ item }) => (
     <View style={styles.postContainer}>
       <View style={styles.postHeader}>
-        <Image source={{ uri: startup.logo }} style={styles.postLogo} />
+        <Image source={require('../assets/images/malcom.jpg')} style={styles.postLogo} />
         <View style={{ flexShrink: 1 }}>
           <Text style={styles.postCompanyName}>{startup.name}</Text>
           <Text style={styles.postDate}>{item.date}</Text>
         </View>
       </View>
       <Text style={styles.postText}>{item.text}</Text>
-      {item.image && <Image source={{ uri: item.image }} style={styles.postImage} />}
+      {item.image && <Image source={require('../assets/images/malcompost.jpg')} style={styles.postImage} />}
       <View style={styles.engagementRow}>
         <Text style={styles.engagementText}>
           {item.likes} Likes • {item.comments} Comments • {item.shares} Shares
@@ -53,24 +53,61 @@ const ProfileScreen = ({ startup }) => {
           <>
             <View style={styles.coverContainer}>
               <Image
-                source={{ uri: startup.coverPhoto || "https://via.placeholder.com/1000x300.png?text=Cover+Photo" }}
+                source={require("../assets/images/cover1.jpg")}
                 style={styles.coverPhoto}
               />
             </View>
             <View style={styles.companyInfoCard}>
-              <Image source={{ uri: startup.logo }} style={styles.companyLogo} />
+              <Image source={require("../assets/images/malcom.jpg")} style={styles.companyLogo} />
               <Text style={styles.companyName}>{startup.name}</Text>
               <Text style={styles.companyTagline}>{startup.tagline}</Text>
             </View>
 
-            <View style={{flex : 1, justifyContent: "center", alignItems: "center" , padding: 10, flexDirection: "row"}}>
-              <TouchableOpacity onPress={ () => router.push(`/(analytics)/analysis`)} style={{marginRight: 10}}>
-                <Text>Analytics</Text>
+            <View style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 10,
+              flexDirection: "row", // Light background similar to LinkedIn's
+            }}>
+              <TouchableOpacity 
+                onPress={() => router.push(`/(analytics)/analysis`)} 
+                style={{
+                  backgroundColor: "#0041C2", // A lighter blue tone
+                  paddingVertical: 10,
+                  paddingHorizontal: 20,
+                  borderRadius: 25, 
+                  marginRight: 10,
+                  shadowColor: "#000",
+                  shadowOpacity: 0.08,
+                  shadowRadius: 2,
+                  elevation: 2, 
+                }}
+              >
+                <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
+                  Analytics
+                </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={ () => router.push(`/AI_asst`)}>
-                <Text>AI Assistant</Text>
+
+              <TouchableOpacity 
+                onPress={() => router.push(`/AI_asst`)} 
+                style={{
+                  backgroundColor: "#0041C2", 
+                  paddingVertical: 10,
+                  paddingHorizontal: 20,
+                  borderRadius: 25,
+                  shadowColor: "#000",
+                  shadowOpacity: 0.08,
+                  shadowRadius: 2,
+                  elevation: 2,
+                }}
+              >
+                <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
+                  AI Assistant
+                </Text>
               </TouchableOpacity>
-            </View>
+            </View>   
+
             <View style={styles.tabBar}>
               {["Posts", "Jobs", "People", "About"].map((tab) => (
                 <TouchableOpacity

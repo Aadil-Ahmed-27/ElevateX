@@ -25,21 +25,21 @@ const persons: SearchResult[] = [
     id: 1,
     type: "person",
     name: "John Doe",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+    avatar: require('../assets/images/john.png'),
     position: "Student",
   },
   {
     id: 2,
     type: "person",
     name: "Jane Smith",
-    avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+    avatar: require('../assets/images/jane.png'),
     position: "Investor",
   },
   {
     id: 3,
     type: "person",
     name: "Alex Johnson",
-    avatar: "https://randomuser.me/api/portraits/men/3.jpg",
+    avatar: require('../assets/images/alex.png'),
     position: "Industry Official",
   },
 ];
@@ -49,14 +49,14 @@ const startups: SearchResult[] = [
     id: 1,
     type: "startup",
     name: "Malcom Company",
-    avatar: "https://www.facebook.com/TechNovaDPM/?locale=et_EE",
+    avatar: require('../assets/images/malcom.jpg'),
     tagline: "Innovating the Future",
   },
   {
     id: 2,
     type: "startup",
     name: "Cybersec Solutions",
-    avatar: "https://via.placeholder.com/80x80.png?text=GreenStart",
+    avatar: require('../assets/images/cybersec.jpg'),
     tagline: "Sustainable Solutions",
   },
 ];
@@ -79,7 +79,7 @@ const SearchScreen = () => {
     return (
       <Link href={linkPath} asChild>
         <TouchableOpacity style={styles.itemContainer}>
-          <Image source={{ uri: item.avatar }} style={styles.avatar} />
+          <Image source={item.avatar } style={styles.avatar} />
           <View style={styles.info}>
             <Text style={styles.name}>{item.name}</Text>
             {item.type === "person" ? (

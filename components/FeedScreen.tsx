@@ -70,6 +70,23 @@ const Header = () => {
       />
       <TouchableOpacity 
         style={styles.notificationButton}
+        onPress={() => router.push('/notifications')}
+      >
+        <View style= {
+          {width: 40, 
+          height: 40,  
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          marginLeft: 70,
+          overflow: 'hidden'
+          }
+        }>
+          <Feather name="bell" size={24} color="#666" />
+        </View>
+      </TouchableOpacity>
+      
+      <TouchableOpacity 
+        style={styles.notificationButton}
         onPress={() => router.push('/profile')}
       >
         <View style= {
@@ -79,7 +96,7 @@ const Header = () => {
           backgroundColor: '#f8f8f8', 
           justifyContent: 'center', 
           alignItems: 'center', 
-          marginRight: 16,
+          marginRight: 20,
           overflow: 'hidden'
           }
         }>
@@ -102,7 +119,7 @@ const FeedScreen = () => {
       userName: "Alex Johnson",
       userTitle: "#1 in the world for Careers & Coaching On LinkedIn | Ad...",
       userAvatar: "https://randomuser.me/api/portraits/men/3.jpg",
-      image: require('../assets/images/react-logo.png'),
+      image: require('../assets/images/promotion.jpg'),
       reactions: "14,590",
       comments: "250"
     },
@@ -111,7 +128,7 @@ const FeedScreen = () => {
       userName: "John Doe",
       userTitle: "Senior Software Engineer | Tech Lead",
       userAvatar: "https://randomuser.me/api/portraits/men/1.jpg",
-      image: require('../assets/images/post1.png'),
+      image: require('../assets/images/final.jpg'),
       reactions: "8,432",
       comments: "156"
     },
@@ -120,7 +137,7 @@ const FeedScreen = () => {
       userName: "Jane Smith",
       userTitle: "Product Manager | Innovation Lead",
       userAvatar: "https://randomuser.me/api/portraits/women/2.jpg",
-      image: require('../assets/images/post2.png'),
+      image: require('../assets/images/meeting.jpg'),
       reactions: "5,789",
       comments: "98"
     }
